@@ -13,3 +13,5 @@ export type { StatCardProps } from './components/organisms/StatCard';
 
 // TODO 1: Setelah kamu membuat DataGrid organism, tambahkan export-nya di sini:
 // export { DataGrid } from './components/organisms/DataGrid';
+export { DataGrid } from './components/organisms/DataGrid';
+export type { DataGridProps } from './components/organisms/DataGrid';

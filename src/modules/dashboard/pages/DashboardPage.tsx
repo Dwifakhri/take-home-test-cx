@@ -6,40 +6,40 @@ import { Alert, StatCard } from '@lib/ui';
 import { useDashboardStats } from '../hooks/useDashboardStats';
 
 // TODO 1: Import DataGrid dari @lib/ui setelah kamu membuatnya:
-// import { DataGrid } from '@lib/ui';
+import { DataGrid } from '@lib/ui';
 //
 // TODO 1: Import useRecentActivity setelah kamu membuatnya:
-// import { useRecentActivity } from '../hooks/useRecentActivity';
+import { useRecentActivity } from '../hooks/useRecentActivity';
 //
 // TODO 1: Definisikan columns untuk tabel Recent User Activity:
-// import type { GridColDef } from '@mui/x-data-grid';
-// import type { UserActivity, UserActivityStatus } from '../types/dashboard';
-// import { StatusBadge } from '@lib/ui';
+import type { GridColDef } from '@mui/x-data-grid';
+import type { UserActivity, UserActivityStatus } from '../types/dashboard';
+import { StatusBadge } from '@lib/ui';
 //
-// const activityColorMap: Record<UserActivityStatus, string> = {
-//   success: 'success.main',
-//   failed: 'error.main',
-// };
-//
-// const activityColumns: GridColDef<UserActivity>[] = [
-//   { field: 'userName', headerName: 'User', flex: 1 },
-//   { field: 'action', headerName: 'Action', flex: 1 },
-//   { field: 'timestamp', headerName: 'Time', width: 180 },
-//   {
-//     field: 'status',
-//     headerName: 'Status',
-//     width: 120,
-//     renderCell: ({ value }) => (
-//       <StatusBadge status={value as UserActivityStatus} colorMap={activityColorMap} />
-//     ),
-//   },
-// ];
+const activityColorMap: Record<UserActivityStatus, string> = {
+  success: 'success.main',
+  failed: 'error.main',
+};
+
+const activityColumns: GridColDef<UserActivity>[] = [
+  { field: 'userName', headerName: 'User', flex: 1 },
+  { field: 'action', headerName: 'Action', flex: 1 },
+  { field: 'timestamp', headerName: 'Time', width: 180 },
+  {
+    field: 'status',
+    headerName: 'Status',
+    width: 120,
+    renderCell: ({ value }) => (
+      <StatusBadge status={value as UserActivityStatus} colorMap={activityColorMap} />
+    ),
+  },
+];
 
 export function DashboardPage() {
   const { data: stats, isLoading, error } = useDashboardStats();
 
   // TODO 1: Tambahkan hook ini setelah useRecentActivity tersedia:
-  // const { data: activities = [], isLoading: isLoadingActivity, error: activityError } = useRecentActivity();
+  const { data: activities = [], isLoading: isLoadingActivity, error: activityError } = useRecentActivity();
 
   return (
     <Box sx={{ p: 3 }}>
@@ -97,20 +97,13 @@ export function DashboardPage() {
            *   loading={isLoadingActivity}
            * />
            */}
-          <Box
-            sx={{
-              border: '2px dashed',
-              borderColor: 'divider',
-              borderRadius: 2,
-              p: 4,
-              textAlign: 'center',
-              color: 'text.disabled',
-            }}
-          >
-            <Typography variant="body2">
-              DataGrid organism belum tersedia — lihat README untuk instruksi TODO 1
-            </Typography>
-          </Box>
+           
+          {activityError && <Alert message={activityError.message} />}
+          <DataGrid
+            rows={activities}
+            columns={activityColumns}
+            loading={isLoadingActivity}
+          />
         </Box>
       </Stack>
     </Box>

@@ -12,9 +12,8 @@ export const dashboardService = {
   // 2. Uncomment dan lengkapi fungsi di bawah ini
   // 3. Buat hook useRecentActivity di hooks/useRecentActivity.ts (lihat useDashboardStats.ts)
   //
-  // getRecentActivity: (): Promise<StandardApiResponse<UserActivity[]>> => {
-  //   return apiClient.get<UserActivity[]>('/dashboard/recent-activity');
-  // },
+  getRecentActivity: (): Promise<StandardApiResponse<UserActivity[]>> => {
+    return apiClient.get<UserActivity[]>('/dashboard/recent-activity');
+  },
 };
-
 export type { UserActivity };
