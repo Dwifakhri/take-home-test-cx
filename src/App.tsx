@@ -96,7 +96,7 @@ export function App() {
 
         <Box
           component="main"
-          sx={{ flexGrow: 1, minHeight: '100vh', bgcolor: 'grey.50' }}
+          sx={{ flexGrow: 1, minHeight: '100vh', bgcolor: 'grey.50', overflow: 'hidden' }}
         >
           <Toolbar />
           <AppRoutes />
